@@ -1,8 +1,9 @@
-package json2xml
+package json2xml_test
 
 import (
 	"encoding/json"
 	"encoding/xml"
+	"json2xml"
 	"strings"
 	"testing"
 )
@@ -26,7 +27,7 @@ func TestBasic(t *testing.T) {
 	} {
 		x := xml.NewEncoder(&buf)
 
-		if err := Convert(json.NewDecoder(strings.NewReader(test.Input)), x); err != nil {
+		if err := json2xml.Convert(json.NewDecoder(strings.NewReader(test.Input)), x); err != nil {
 			t.Errorf("test %d: unexpected error: %s", n+1, err)
 			continue
 		}
@@ -55,7 +56,7 @@ func TestComplex(t *testing.T) {
 	} {
 		x := xml.NewEncoder(&buf)
 
-		if err := Convert(json.NewDecoder(strings.NewReader(test.Input)), x); err != nil {
+		if err := json2xml.Convert(json.NewDecoder(strings.NewReader(test.Input)), x); err != nil {
 			t.Errorf("test %d: unexpected error: %s", n+1, err)
 
 			continue
