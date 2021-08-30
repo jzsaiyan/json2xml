@@ -15,23 +15,25 @@ string is wrapped in `<string></string>` A null becomes `<null></null>`, with no
 When a type is a member of an object, the name of the key becomes an attribute
 on the type tag, for example: -
 
+```json
 {
     "Location": {
     	"Longitude": -1.8262,
     	"Latitude": 51.1789
     }
 }
+```
 
 ...becomes...
 
+```xml
 <object>
-
     <object name="Location">
     	<number name="Longitude">-1.8262</number>
     	<number name="Latitude">51.1789</number>
     </object>
-
 </object>
+```
 
 ## Usage
 
