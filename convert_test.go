@@ -9,6 +9,7 @@ import (
 
 func TestBasic(t *testing.T) {
 	var buf strings.Builder
+
 	for n, test := range []struct {
 		Input, Output string
 	}{
@@ -24,13 +25,18 @@ func TestBasic(t *testing.T) {
 		{"null", "<null></null>"},
 	} {
 		x := xml.NewEncoder(&buf)
+
 		if err := Convert(json.NewDecoder(strings.NewReader(test.Input)), x); err != nil {
 			t.Errorf("test %d: unexpected error: %s", n+1, err)
 			continue
 		}
+
 		x.Flush()
+
 		output := buf.String()
+
 		buf.Reset()
+
 		if output != test.Output {
 			t.Errorf("test %d: expecting %q, got %q", n+1, test.Output, output)
 		}
@@ -39,6 +45,7 @@ func TestBasic(t *testing.T) {
 
 func TestComplex(t *testing.T) {
 	var buf strings.Builder
+
 	for n, test := range []struct {
 		Input, Output string
 	}{
@@ -47,13 +54,19 @@ func TestComplex(t *testing.T) {
 		{"[{\"A\":[{\"B\":3.14159,\"C\":null},\"D\",\"E\",null,1.234],\"F\":123},\"G\"]", "<array><object><array name=\"A\"><object><number name=\"B\">3.14159</number><null name=\"C\"></null></object><string>D</string><string>E</string><null></null><number>1.234</number></array><number name=\"F\">123</number></object><string>G</string></array>"},
 	} {
 		x := xml.NewEncoder(&buf)
+
 		if err := Convert(json.NewDecoder(strings.NewReader(test.Input)), x); err != nil {
 			t.Errorf("test %d: unexpected error: %s", n+1, err)
+
 			continue
 		}
+
 		x.Flush()
+
 		output := buf.String()
+
 		buf.Reset()
+
 		if output != test.Output {
 			t.Errorf("test %d: expecting %q, got %q", n+1, test.Output, output)
 		}

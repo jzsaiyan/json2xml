@@ -1,3 +1,3 @@
-module vimagination.zapto.org/json2xml
+module json2xml
 
 go 1.16
