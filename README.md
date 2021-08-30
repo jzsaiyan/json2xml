@@ -1,8 +1,8 @@
 # json2xml
 
-Forked from `https://github.com/MJKWoolnough/json2xml`
-
 Package json2xml converts a JSON structure to XML.
+
+Forked from `https://github.com/MJKWoolnough/json2xml`
 
 json2xml wraps each type within xml tags named after the type. For example:-
 
@@ -16,24 +16,22 @@ When a type is a member of an object, the name of the key becomes an attribute
 on the type tag, for example: -
 
 {
-
     "Location": {
     	"Longitude": -1.8262,
     	"Latitude": 51.1789
     }
-
 }
 
 ...becomes...
 
-`<object>
+<object>
 
     <object name="Location">
     	<number name="Longitude">-1.8262</number>
     	<number name="Latitude">51.1789</number>
     </object>
 
-</object>`
+</object>
 
 ## Usage
 
